@@ -1,6 +1,6 @@
 # Jupyter Book Tutorial
 
-(Last updated: May 26, 2024)
+(Last updated: May 27, 2025)
 
 In this tutorial, we will teach you how to create a Jupyter book and deploy it online.
 This page is written in markdown, which also serves as an example.
@@ -46,6 +46,8 @@ You also need to give the token proper access permissions/scopes, as indicated i
 
 ![token_scope](images/token_scope.png)
 
+You can also choose to [use other authentication methods](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-authentication-to-github), such as using SSH keys.
+
 ### Install the environment to run Jupyter notebook
 
 We assume that you have installed the environment that can edit and run Jupyter Notebook files.
@@ -75,6 +77,7 @@ If you already have `conda` installed on your machine, you can skip this step. C
 conda --version
 ```
 If `conda` is installed, you should see a printed message with the version number.
+If you installed Jupyter Notebook before, it is highly likely that you already have anaconda on your machine.
 :::
 
 We recommend using miniconda since it is light-weighted, and you can avoid waiting for a long time to install many packages that may not be necessary.
@@ -279,7 +282,10 @@ Next, push your code and files on your local machine to your remote repository.
 git push
 ```
 The above commands push your code to the main branch.
-However, we need to use the [ghp-import](https://github.com/c-w/ghp-import) package to push your website code to a separate branch.
+Remember to enter your personal access token (not password) when asked to do so.
+If you use the SSH key authentication method, it will not ask you to enter the personal access token.
+
+Next, we need to use the [ghp-import](https://github.com/c-w/ghp-import) package to push your website code to a separate branch.
 To use the package, run the following to install it:
 ```sh
 # For Mac and Linux users
@@ -333,6 +339,11 @@ git status
 git commit -m "Update my book."
 git push
 ghp-import -n -p -f _build/html
+```
+
+If for some reasons, your changes are not reflected in the newly built website, you can first [clean up the content](https://jupyterbook.org/en/stable/basics/build.html) by using the following command, and then run the above commands to build the book again.
+```sh
+jupyter-book clean .
 ```
 
 Every time you build some new files (or updated files), you need to rebuild the book and push new changes to your remote GitHub repository.

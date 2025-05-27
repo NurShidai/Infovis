@@ -490,7 +490,7 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="jupyter-book-tutorial">
 <h1>Jupyter Book Tutorial<a class="headerlink" href="#jupyter-book-tutorial" title="Permalink to this headline">#</a></h1>
-<p>(Last updated: May 26, 2024)</p>
+<p>(Last updated: May 27, 2025)</p>
 <p>In this tutorial, we will teach you how to create a Jupyter book and deploy it online.
 This page is written in markdown, which also serves as an example.
 All the content on this website is licensed under a <a class="reference external" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
@@ -533,6 +533,7 @@ You must <a class="reference external" href="https://docs.github.com/en/authenti
 To do so, go to <a class="reference external" href="https://github.com/settings/tokens">this page</a> to create a classic token (not the fine-grained token).
 You also need to give the token proper access permissions/scopes, as indicated in the following image:</p>
 <p><img alt="token_scope" src="../_images/token_scope.png" /></p>
+<p>You can also choose to <a class="reference external" href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-authentication-to-github">use other authentication methods</a>, such as using SSH keys.</p>
 </section>
 <section id="install-the-environment-to-run-jupyter-notebook">
 <h3>Install the environment to run Jupyter notebook<a class="headerlink" href="#install-the-environment-to-run-jupyter-notebook" title="Permalink to this headline">#</a></h3>
@@ -563,7 +564,8 @@ Pick either one of them and follow the instructions on the website to install co
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>conda --version
 </pre></div>
 </div>
-<p>If <code class="docutils literal notranslate"><span class="pre">conda</span></code> is installed, you should see a printed message with the version number.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">conda</span></code> is installed, you should see a printed message with the version number.
+If you installed Jupyter Notebook before, it is highly likely that you already have anaconda on your machine.</p>
 </div>
 <p>We recommend using miniconda since it is light-weighted, and you can avoid waiting for a long time to install many packages that may not be necessary.
 If you already have the conda environment ready on your machine, you can skip this step.</p>
@@ -756,7 +758,9 @@ You should see green marked messages in the terminal.</p>
 </pre></div>
 </div>
 <p>The above commands push your code to the main branch.
-However, we need to use the <a class="reference external" href="https://github.com/c-w/ghp-import">ghp-import</a> package to push your website code to a separate branch.
+Remember to enter your personal access token (not password) when asked to do so.
+If you use the SSH key authentication method, it will not ask you to enter the personal access token.</p>
+<p>Next, we need to use the <a class="reference external" href="https://github.com/c-w/ghp-import">ghp-import</a> package to push your website code to a separate branch.
 To use the package, run the following to install it:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># For Mac and Linux users</span>
 pip install -U ghp-import
@@ -802,6 +806,10 @@ git status
 git commit -m <span class="s2">&quot;Update my book.&quot;</span>
 git push
 ghp-import -n -p -f _build/html
+</pre></div>
+</div>
+<p>If for some reasons, your changes are not reflected in the newly built website, you can first <a class="reference external" href="https://jupyterbook.org/en/stable/basics/build.html">clean up the content</a> by using the following command, and then run the above commands to build the book again.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>jupyter-book clean .
 </pre></div>
 </div>
 <p>Every time you build some new files (or updated files), you need to rebuild the book and push new changes to your remote GitHub repository.
